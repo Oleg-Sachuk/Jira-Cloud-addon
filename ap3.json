@@ -24,7 +24,7 @@
 
   "production": {
     "port": "$PORT",
-    "localBaseUrl": "https://atlassian-labs-taskmaster-plugin.herokuapps.com",
+    "localBaseUrl": "https://node-ap3-test.herokuapps.com",
     "store": "postgres",
     "connection": "$DATABASE_URL"
   }
