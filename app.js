@@ -6,6 +6,7 @@ var routes = require('./routes');
 
 var app = express();
 var plugin = ap3(app);
+var devMode = app.get('env') == "development";
 
 // all environments
 app.set('port', plugin.config.port());
@@ -25,7 +26,7 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if ('development' == app.get('env')) {
+if (devMode) {
   app.use(express.errorHandler());
 }
 
@@ -35,7 +36,7 @@ routes(app, plugin);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
-  if (app.get('env') === 'development') {
+  if (devMode) {
     plugin.register(plugin);
   }
 });
