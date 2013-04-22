@@ -1,0 +1,14 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.2.0",
+    "jade": "*",
+    "node-ap3": "~0.1.0",
+    "client-sessions": "~0.1.1"
+  }
+}

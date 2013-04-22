@@ -1,0 +1,32 @@
+{
+
+  "development": {
+    "port": 3000,
+    "localBaseUrl": "http://localhost:$port",
+    "store": {
+      "type": "postgres",
+      "connection": "postgres://localhost:5432/node_ap3_test"
+    },
+    "hosts": [{
+      "url": "http://localhost:1990/confluence",
+      "user": "admin",
+      "pass": "admin"
+    }, {
+      "url": "http://localhost:2990/jira",
+      "user": "admin",
+      "pass": "admin"
+    }, {
+      "url": "http://localhost:5990/refapp",
+      "user": "admin",
+      "pass": "admin"
+    }]
+  },
+
+  "production": {
+    "port": "$PORT",
+    "localBaseUrl": "https://atlassian-labs-taskmaster-plugin.herokuapps.com",
+    "store": "postgres",
+    "connection": "$DATABASE_URL"
+  }
+
+}
