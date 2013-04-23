@@ -15,12 +15,11 @@
 
   "production": {
     "port": "$PORT",
-    "localBaseUrl": "https://node-ap3-test.herokuapps.com",
+    "localBaseUrl": "https://your-subdomain.herokuapps.com",
     "store": {
       "type": "postgres",
-      "connection": "postgres://localhost:5432/node_ap3_test"
-    },
-    "connection": "$DATABASE_URL"
+      "connection": "$DATABASE_URL"
+    }
   }
 
 }
