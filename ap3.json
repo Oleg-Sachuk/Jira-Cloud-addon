@@ -5,11 +5,18 @@
     "store": {
       "type": "memory"
     },
-    "hosts": [{
-      "url": "http://localhost:2990/jira",
-      "user": "admin",
-      "pass": "admin"
-    }]
+    "hosts": [
+      {
+        "url": "http://localhost:1990/confluence",
+        "user": "admin",
+        "pass": "admin"
+      },
+      {
+        "url": "http://localhost:2990/jira",
+        "user": "admin",
+        "pass": "admin"
+      }
+    ]
   },
 
   "production": {

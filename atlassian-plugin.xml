@@ -21,6 +21,7 @@
 
   <webhook key="installed" event="remote_plugin_installed" url="/installed"/>
 
-  <general-page key="example-page" name="Example Page" section="system.top.navigation.bar" url="/example"/>
+  <general-page key="example-page-in-jira" name="Example Page" section="system.top.navigation.bar" url="/example"/>
+  <general-page key="example-page-in-confluence" name="Example Page" section="system.user" url="/example"/>
 
 </atlassian-plugin>
