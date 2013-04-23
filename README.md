@@ -1,1 +1,2 @@
-Simple test app for node-ap3.
+# Expressjs Template App for Atlassian Plugins 3
+

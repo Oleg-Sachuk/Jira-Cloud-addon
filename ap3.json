@@ -2,7 +2,6 @@
 
   "development": {
     "port": 3000,
-    "localBaseUrl": "http://localhost:$port",
     "store": {
       "type": "memory"
     },
