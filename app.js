@@ -37,7 +37,7 @@ plugin.configure();
 routes(app, plugin);
 
 http.createServer(app).listen(port, function(){
-  console.log('Plugin server listening on port ' + port);
+  console.log('Plugin server listening on port ' + port + '.');
   if (devMode) {
     plugin.register();
   }
