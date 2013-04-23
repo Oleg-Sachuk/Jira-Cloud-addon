@@ -1,5 +1,5 @@
 var express = require('express');
-var ap3 = require('node-ap3');
+var ap3 = require('ap3');
 var http = require('http');
 var path = require('path');
 var routes = require('./routes');
