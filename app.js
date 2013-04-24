@@ -32,8 +32,6 @@ if (devMode) {
   app.use(express.errorHandler());
 }
 
-plugin.configure();
-
 routes(app, plugin);
 
 http.createServer(app).listen(port, function(){
