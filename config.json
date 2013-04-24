@@ -6,16 +6,8 @@
       "type": "memory"
     },
     "hosts": [
-      {
-        "url": "http://localhost:1990/confluence",
-        "user": "admin",
-        "pass": "admin"
-      },
-      {
-        "url": "http://localhost:2990/jira",
-        "user": "admin",
-        "pass": "admin"
-      }
+      "http://admin:admin@localhost:1990/confluence",
+      "http://admin:admin@localhost:2990/jira"
     ]
   },
 
