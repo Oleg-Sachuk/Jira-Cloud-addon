@@ -17,6 +17,7 @@ module.exports = function (app, addon) {
 
   app.get('/example',
 
+    // Protect this resource with OAuth
     addon.authenticate(),
 
     function(req, res) {
