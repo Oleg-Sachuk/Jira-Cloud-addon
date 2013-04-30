@@ -5,9 +5,11 @@ var path = require('path');
 var routes = require('./routes');
 
 var app = express();
-var plugin = ap3(app);
 
-var port = plugin.config.port();
+// Bootstrap the ap3 package
+var addon = ap3(app);
+
+var port = addon.config.port();
 var devMode = app.get('env') == "development";
 
 // all environments
@@ -21,9 +23,9 @@ app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.cookieSession({
   key: 'session',
-  secret: plugin.config.secret()
+  secret: addon.config.secret()
 }));
-app.use(plugin.middleware());
+app.use(addon.middleware());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -32,11 +34,11 @@ if (devMode) {
   app.use(express.errorHandler());
 }
 
-routes(app, plugin);
+routes(app, addon);
 
 http.createServer(app).listen(port, function(){
   console.log('Plugin server listening on port ' + port + '.');
   if (devMode) {
-    plugin.register();
+    addon.register();
   }
 });

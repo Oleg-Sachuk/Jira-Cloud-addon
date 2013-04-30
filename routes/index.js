@@ -1,11 +1,11 @@
-module.exports = function (app, plugin) {
+module.exports = function (app, addon) {
 
   app.get('/',
 
     function(req, res) {
       res.format({
         'text/html': function () {
-          res.redirect(plugin.descriptor.documentationUrl() || '/atlassian-plugin.xml');
+          res.redirect(addon.descriptor.documentationUrl() || '/atlassian-plugin.xml');
         },
         'application/xml': function () {
           res.redirect('/atlassian-plugin.xml');
@@ -17,7 +17,7 @@ module.exports = function (app, plugin) {
 
   app.get('/example',
 
-    plugin.authenticate(),
+    addon.authenticate(),
 
     function(req, res) {
       res.render('example', {title: 'Express'});
