@@ -6,16 +6,18 @@
     // this is the port your Express server will listen on
     "port": 3000,
 
-    // node-ap3 currently provides two types (memory and postgres) of stores
+    // node-ap3 currently provides two types of stores (memory and postgres)
     // to store the host client information (i.e., client key, host public
-    // key, etc.)
-    "store": {
-      "type": "memory"
-    },
+    // key, etc.). Default is "memory"
+    //
+    // "store": {
+    //   "type": "postgres",
+    //   "connection": "postgres://localhost/pglocal"
+    // },
 
     // Your add-on will be registered with the following hosts upon startup.
     // In order to take advantage of the automatic registration/deregistration,
-    // you need to make sure that your express app calls `plugin.register()`
+    // you need to make sure that your express app calls `addon.register()`
     // (see app.js). Also, you don't need to specify the user/pwd in the URL
     // as in the examples below. If you don't provide a user/pwd, you will be
     // prompted the first time you start the server.

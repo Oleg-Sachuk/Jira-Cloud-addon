@@ -37,7 +37,7 @@ if (devMode) {
 routes(app, addon);
 
 http.createServer(app).listen(port, function(){
-  console.log('Plugin server listening on port ' + port + '.');
+  console.log('Add-on server listening on port ' + port + '.');
   if (devMode) {
     addon.register(); // enable auto registration of addon in devMode
   }
