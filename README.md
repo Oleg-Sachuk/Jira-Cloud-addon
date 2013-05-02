@@ -16,7 +16,7 @@ The first thing you'll want to do is determine the host (i.e., Atlassian JIRA/Co
 
 1. You can use an OnDemand instance... TODO
 2. Or, you can can use the [Atlassian SDK](developer.atlassian.com) to run a standalone development environment of JIRA or Confluence (`atlas-run-standalone --product <jira|confluence>`
-3. Or, you can use a [JIRA or Confluene Vagrant VM](https://bitbucket.org/rmanalan/p3-dev-env-vagrant)
+3. Or, you can use a [JIRA or Confluence Vagrant VM](https://bitbucket.org/rmanalan/p3-dev-env-vagrant)
 
 Once you've determined the host for your add-on `config.json` file with the base URL of your host(s) as well any other information you'd like to change.
 
