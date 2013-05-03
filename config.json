@@ -6,7 +6,7 @@
     // this is the port your Express server will listen on
     "port": 3000,
 
-    // node-ap3 currently provides two types of stores (memory and postgres)
+    // feebs currently provides two types of stores (memory and postgres)
     // to store the host client information (i.e., client key, host public
     // key, etc.). Default is "memory"
     //
