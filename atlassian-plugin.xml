@@ -37,7 +37,7 @@
       ## OAuth Authentication
 
       To protect your add-on from unauthorized use, we use two-legged OAuth 1.0. Your public-key is already
-      set in ./public-key.pem... no need to add it here. At run-time, the @publicKey@ token below will
+      set in ./public-key.pem... no need to add it here. At run-time, the publicKey token below will
       be populated with your real public-key.pem.
      -->
     <oauth>
