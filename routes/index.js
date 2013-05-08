@@ -22,7 +22,7 @@ module.exports = function (app, addon) {
   );
 
   // This is an example route that's used by the default <general-page> modules
-  app.get('/example',
+  app.get('/hello-world',
 
     // Protect this resource with OAuth
     addon.authenticate(),
@@ -30,7 +30,7 @@ module.exports = function (app, addon) {
     function(req, res) {
       // Rendering a template is easy. `render()` takes two params: name of template and a
       // json object to pass the context in.
-      res.render('example', {title: 'Express'});
+      res.render('hello-world', {title: 'Atlassian Connect'});
     }
 
   );

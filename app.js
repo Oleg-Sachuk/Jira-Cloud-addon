@@ -30,12 +30,13 @@ var devMode = app.get('env') == "development";
 // The following settings applies to all environments.
 app.set('port', port);
 
-// All your views live here
+// We're going to use [Handlebars](http://handlebarsjs.com/) as our
+// template library via the [express-hbs](https://npmjs.org/package/express-hbs)
+// library.
+var hbs = require('express-hbs');
+app.engine('hbs', hbs.express3({partialsDir: __dirname + '/views'}));
+app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
-
-// Jade is Express' preferred templating language, but feel free to use a different one.
-// Check out the [consolidate](https://npmjs.org/package/consolidate) package
-app.set('view engine', 'jade');
 
 // Declare any Express [middleware](http://expressjs.com/api.html#middleware) you'd like to use here
 app.use(express.favicon());

@@ -77,7 +77,7 @@
     * [JIRA](http://atlassian-connect.herokuapp.com/help#jira)
     * [Confluence](http://atlassian-connect.herokuapp.com/help#confluence)
    -->
-  <general-page key="example-page-in-jira" name="Example Page" section="system.top.navigation.bar" url="/example"/>
-  <general-page key="example-page-in-confluence" name="Example Page" section="system.user" url="/example"/>
+  <general-page key="hello-world-page-in-jira" name="Hello World" section="system.top.navigation.bar" url="/hello-world"/>
+  <general-page key="hello-world-page-in-confluence" name="Hello World" section="system.user" url="/hello-world"/>
 
 </atlassian-plugin>
