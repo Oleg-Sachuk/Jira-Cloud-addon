@@ -32,7 +32,14 @@
     "localBaseUrl": "https://your-subdomain.herokuapps.com",
     "store": {
       "type": "postgres",
-      "connection": "$DATABASE_URL"
+      "connection": "$DATABASE_URL",
+
+      // Make sure that your add-on can only be registered by the hosts on
+      // these domains.
+      "whitelist": [
+        "*.atlassian.net",
+        "*.jira.com"
+      ]
     }
   }
 }
