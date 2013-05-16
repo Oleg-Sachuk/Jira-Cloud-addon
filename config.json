@@ -29,7 +29,7 @@
 
   "production": {
     "port": "$PORT",
-    "localBaseUrl": "https://your-subdomain.herokuapps.com",
+    "localBaseUrl": "https://your-subdomain.herokuapp.com",
     "store": {
       "type": "postgres",
       "connection": "$DATABASE_URL",
