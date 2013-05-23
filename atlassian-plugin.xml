@@ -20,8 +20,8 @@
       Atlassian Connect add-ons have to declare what permissions they need to work. Available permissions
       can be found on the [Interactive Descriptor Guide](https://developer.atlassian.com/static/connect)
 
-      * [JIRA](https://developer.atlassian.com/static/connect#jira/permissions)
-      * [Confluence](https://developer.atlassian.com/static/connect#confluence/permissions)
+      * [JIRA](https://developer.atlassian.com/static/connect/#jira/permissions)
+      * [Confluence](https://developer.atlassian.com/static/connect/#confluence/permissions)
      -->
     <permissions>
       <!-- create_oauth_link is required if you want to protect your add-on with OAuth authentication -->
