@@ -4,16 +4,14 @@
   This file is a manifest of all the components used to describe your add-on's features.
   For information about what Atlassian Connect components are available for use in this file
   visit the [Interactive Descriptor Guide](https://developer.atlassian.com/static/connect).
-
-  Make sure you change your add-on's key and name below.
  -->
-<atlassian-plugin key="my-app-key" name="My App Name" plugins-version="2"
+<atlassian-plugin key="{{key}}" name="{{name}}" plugins-version="2"
   xmlns="https://remoteapps.jira.com/rest/remotable-plugins/1/installer/schema/atlassian-plugin">
 
   <plugin-info>
-    <description>My app description.</description>
-    <version>1</version>
-    <vendor name="My Company" url="http://example.com"/>
+    <description>{{description}}</description>
+    <version>{{version}}</version>
+    <vendor name="{{vendorName}}" url="{{vendorUrl}}"/>
     <!--
       ## Permissions
 
@@ -28,12 +26,15 @@
       <permission>create_oauth_link</permission>
       <!-- add additional permissions here, as needed -->
     </permissions>
-    <!-- <param name="documentation.url">http://your.add-on.homepage.url.com</param> -->
-    <param name="configure.url">/plugins/servlet/remotable-plugins/my-app-key/config-page</param>
+
+    {{#if documentationUrl}}
+    <param name="documentation.url">{{documentationUrl}}</param>
+    {{/if}}
+    <param name="configure.url">/plugins/servlet/remotable-plugins/{{key}}/config-page</param>
+
   </plugin-info>
 
-
-  <remote-plugin-container key="container" display-url="@localBaseUrl@">
+  <remote-plugin-container key="container" display-url="{{localBaseUrl}}">
     <!--
       ## OAuth Authentication
 
@@ -43,7 +44,7 @@
      -->
     <oauth>
       <public-key>
-@publicKey@
+{{publicKey}}
       </public-key>
     </oauth>
   </remote-plugin-container>
@@ -52,8 +53,8 @@
     ## Webhooks
 
     At the moment, Atlassian Connect supports two types of components of which webhooks is one of them.
-    The "remote_plugin_installed" webhook is a special webhook that `feebs` will automatically
-    handle for you. When your add-on is installed inside a JIRA or Confluence host, that host will
+    The "remote_plugin_enabled" webhook is a special webhook that `feebs` will automatically
+    handle for you. When your add-on is enabled inside a JIRA or Confluence host, that host will
     send a POST to your add-on with information about that host (i.e., host clientKey, host public key, etc.).
 
     If you define your own hooks, you'll need to create POST routes to handle them. For more information on
@@ -62,7 +63,7 @@
     * [JIRA](https://developer.atlassian.com/static/connect#jira/webhook)
     * [Confluence](https://developer.atlassian.com/static/connect#confluence/webhook)
    -->
-  <webhook key="installed" event="remote_plugin_installed" url="/installed"/>
+  <webhook key="enabled" event="remote_plugin_enabled" url="/enabled"/>
 
   <!--
     ## Pages
