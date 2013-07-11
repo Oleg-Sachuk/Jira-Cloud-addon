@@ -1,18 +1,28 @@
-// app.js is the entry point for your add-on. This bootstraps
-// your add-on server.
+// This is the entry point for your add-on, creating and configuring
+// your add-on HTTP server
 
-// [Express](http://expressjs.com/) is your friend. It's the underlying
-// web framework that `feebs` uses.
+// [Express](http://expressjs.com/) is your friend -- it's the underlying
+// web framework that `feebs` uses
 var express = require('express');
-
 // You need to load `feebs` to use her godly powers
 var feebs = require('feebs');
-
-// Typical web stuff you'll need later
+// Static expiry middleware to helpe serve static resources efficiently
+var expiry = require('static-expiry');
+// We use [Handlebars](http://handlebarsjs.com/) as our view engine
+// via [express-hbs](https://npmjs.org/package/express-hbs)
+var hbs = require('express-hbs');
+// We also need a few stock Node modules
 var http = require('http');
 var path = require('path');
+var os = require('os');
 
-// Your routes live here. This is the C part of MVC.
+// Anything in ./public is served up as static content
+var staticDir = path.join(__dirname, 'public');
+
+// Anything in ./views are HBS templates
+var viewsDir = __dirname + '/views';
+
+// Your routes live here; this is the C in MVC
 var routes = require('./routes');
 
 // Bootstrap Express
@@ -25,39 +35,46 @@ var addon = feebs(app);
 var port = addon.config.port();
 
 // Declares the environment to use in `config.js`
-var devMode = app.get('env') == "development";
+var devEnv = app.get('env') == 'development';
 
-// The following settings applies to all environments.
+// The following settings applies to all environments
 app.set('port', port);
 
-// We're going to use [Handlebars](http://handlebarsjs.com/) as our
-// template library via the [express-hbs](https://npmjs.org/package/express-hbs)
-// library.
-var hbs = require('express-hbs');
-app.engine('hbs', hbs.express3({partialsDir: __dirname + '/views'}));
+// Configure the Handlebars view engine
+app.engine('hbs', hbs.express3({partialsDir: viewsDir}));
 app.set('view engine', 'hbs');
-app.set('views', __dirname + '/views');
+app.set('views', viewsDir);
 
 // Declare any Express [middleware](http://expressjs.com/api.html#middleware) you'd like to use here
 app.use(express.favicon());
-app.use(express.logger('dev'));
+// Log requests, using an appropriate formatter by env
+app.use(express.logger(devEnv ? 'dev' : 'default'));
+// Include stock request parsers
 app.use(express.bodyParser());
-app.use(express.methodOverride());
 app.use(express.cookieParser());
+// Gzip responses when appropriate
+app.use(express.compress());
+// Feebs requires sessions; cookie sessions are useful for easy multi-dyno support on Heroku
 app.use(express.cookieSession({
+  // Arbitrary key for the session cookie
   key: 'session',
-  secret: addon.config.secret() // Add your super secret salt in `config.js`
+  // Automatically generated secret based on your private key
+  secret: addon.config.secret()
 }));
-// You need to instantiate the `feebs` middleware in order to get it's goodness for free
+// You need to instantiate the `feebs` middleware in order to get its goodness for free
 app.use(addon.middleware());
-// This is where the routers are mounted
+// Enable static resource fingerprinting for far future expires caching in production
+app.use(expiry(app, {dir: staticDir, debug: devEnv}));
+// Add an hbs helper to fingerprint static resource urls
+hbs.registerHelper('furl', function (url) { return app.locals.furl(url); });
+// Mount the add-on's routes
 app.use(app.router);
-// Anything in ./public is served right up as static content
-app.use(express.static(path.join(__dirname, 'public')));
+// Mount the static resource dir
+app.use(express.static(staticDir));
 
-// development only
-if (devMode) {
-  // Show nicer errors when in devMode
+// Development only
+if (devEnv) {
+  // Show nicer errors when in devEnv
   app.use(express.errorHandler());
 }
 
@@ -66,8 +83,8 @@ routes(app, addon);
 
 // Boot the damn thing
 http.createServer(app).listen(port, function(){
-  console.log('Add-on server running at http://localhost:' + port);
-  if (devMode) {
+  console.log('Add-on server running at http://' + os.hostname() + ':' + port);
+  if (devEnv) {
     // Enables auto registration/de-registration of add-ons into a host
     addon.register();
   }
