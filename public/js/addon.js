@@ -1,1 +1,1 @@
-/* add-on scripts */
+/* add-on script */

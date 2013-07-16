@@ -18,22 +18,16 @@ var os = require('os');
 
 // Anything in ./public is served up as static content
 var staticDir = path.join(__dirname, 'public');
-
 // Anything in ./views are HBS templates
 var viewsDir = __dirname + '/views';
-
 // Your routes live here; this is the C in MVC
 var routes = require('./routes');
-
 // Bootstrap Express
 var app = express();
-
 // Bootstrap the `feebs` library
 var addon = feebs(app);
-
 // You can set this in `config.js`
 var port = addon.config.port();
-
 // Declares the environment to use in `config.js`
 var devEnv = app.get('env') == 'development';
 
@@ -66,26 +60,23 @@ app.use(addon.middleware());
 // Enable static resource fingerprinting for far future expires caching in production
 app.use(expiry(app, {dir: staticDir, debug: devEnv}));
 // Add an hbs helper to fingerprint static resource urls
-hbs.registerHelper('furl', function (url) { return app.locals.furl(url); });
+hbs.registerHelper('furl', function(url){ return app.locals.furl(url); });
 // Mount the add-on's routes
 app.use(app.router);
 // Mount the static resource dir
 app.use(express.static(staticDir));
 
-// Development only
-if (devEnv) {
-  // Show nicer errors when in devEnv
-  app.use(express.errorHandler());
-}
+// Show nicer errors when in dev mode
+if (devEnv) app.use(express.errorHandler());
 
-// Pass in express and `feebs` to your routers
+// Wire up your routes using the express and `feebs` objects
 routes(app, addon);
 
 // Boot the damn thing
 http.createServer(app).listen(port, function(){
   console.log('Add-on server running at http://' + os.hostname() + ':' + port);
   if (devEnv) {
-    // Enables auto registration/de-registration of add-ons into a host
+    // Enables auto registration/de-registration of add-ons into a host in dev mode
     addon.register();
   }
 });
