@@ -75,8 +75,6 @@ routes(app, addon);
 // Boot the damn thing
 http.createServer(app).listen(port, function(){
   console.log('Add-on server running at http://' + os.hostname() + ':' + port);
-  if (devEnv) {
-    // Enables auto registration/de-registration of add-ons into a host in dev mode
-    addon.register();
-  }
+  // Enables auto registration/de-registration of add-ons into a host in dev mode
+  if (devEnv) addon.register();
 });
