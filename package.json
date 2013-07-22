@@ -9,6 +9,6 @@
     "express": "~3.3.4",
     "express-hbs": "*",
     "static-expiry": ">=0.0.5",
-    "feebs": "~0.5.1"
+    "feebs": "~0.5.2"
   }
 }
