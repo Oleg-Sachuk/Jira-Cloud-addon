@@ -16,7 +16,7 @@
     // This is the port your Express server will listen on
     "port": 3000,
 
-    // Feebs currently integrates with JugglingDB for persistence
+    // alassian-connect-express currently integrates with JugglingDB for persistence
     // to store the host client information (i.e., client key, host public
     // key, etc). When no adapter is specified, it defaults to JugglingDB's
     // fallback memory storage.
@@ -31,9 +31,9 @@
     // that you register your adapter factory with the following code in
     // app.js:
     //
-    //   feebs.store.register(adapterName, factoryFn)
+    //   ac.store.register(adapterName, factoryFn)
     //
-    // See node-feebs/lib/store/index.js and the default jugglingdb.js
+    // See atlassian-connect-express/lib/store/index.js and the default jugglingdb.js
     // files for code demonstrating how to write a conformant adapter.  The
     // default values are as follows:
     //
@@ -75,11 +75,11 @@
     "store": {
       // You won't want to use the memory store in production, or your install
       // registrations will be forgotten any time your app restarts.  Here
-      // we tell feebs to use the PostgreSQL backend for the default
+      // we tell atlassian-connect-express to use the PostgreSQL backend for the default
       // JugglingDB adapter.
       "type": "postgres",
       // Again, a PaaS host like Heroku will probably provide the db connection
-      // URL to you through the environment, so we tell feebs to use that value.
+      // URL to you through the environment, so we tell atlassian-connect-express to use that value.
       "url": "$DATABASE_URL"
     },
 

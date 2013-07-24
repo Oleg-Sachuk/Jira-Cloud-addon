@@ -2,10 +2,10 @@
 // your add-on HTTP server
 
 // [Express](http://expressjs.com/) is your friend -- it's the underlying
-// web framework that `feebs` uses
+// web framework that `atlassian-connect-express` uses
 var express = require('express');
-// You need to load `feebs` to use her godly powers
-var feebs = require('feebs');
+// You need to load `atlassian-connect-express` to use her godly powers
+var ac = require('atlassian-connect-express');
 // Static expiry middleware to helpe serve static resources efficiently
 var expiry = require('static-expiry');
 // We use [Handlebars](http://handlebarsjs.com/) as our view engine
@@ -24,8 +24,8 @@ var viewsDir = __dirname + '/views';
 var routes = require('./routes');
 // Bootstrap Express
 var app = express();
-// Bootstrap the `feebs` library
-var addon = feebs(app);
+// Bootstrap the `atlassian-connect-express` library
+var addon = ac(app);
 // You can set this in `config.js`
 var port = addon.config.port();
 // Declares the environment to use in `config.js`
@@ -48,14 +48,14 @@ app.use(express.bodyParser());
 app.use(express.cookieParser());
 // Gzip responses when appropriate
 app.use(express.compress());
-// Feebs requires sessions; cookie sessions are useful for easy multi-dyno support on Heroku
+// atlassian-connect-express requires sessions; cookie sessions are useful for easy multi-dyno support on Heroku
 app.use(express.cookieSession({
   // Arbitrary key for the session cookie
   key: 'session',
   // Automatically generated secret based on your private key
   secret: addon.config.secret()
 }));
-// You need to instantiate the `feebs` middleware in order to get its goodness for free
+// You need to instantiate the `atlassian-connect-express` middleware in order to get its goodness for free
 app.use(addon.middleware());
 // Enable static resource fingerprinting for far future expires caching in production
 app.use(expiry(app, {dir: staticDir, debug: devEnv}));
@@ -69,7 +69,7 @@ app.use(express.static(staticDir));
 // Show nicer errors when in dev mode
 if (devEnv) app.use(express.errorHandler());
 
-// Wire up your routes using the express and `feebs` objects
+// Wire up your routes using the express and `atlassian-connect-express` objects
 routes(app, addon);
 
 // Boot the damn thing

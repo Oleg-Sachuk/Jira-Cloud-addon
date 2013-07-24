@@ -12,4 +12,4 @@ Congratulations! You've successfully created an Atlassian Connect Add-on using t
 
 ## What's next?
 
-[Read the docs](https://bitbucket.org/atlassian/node-feebs/src/master/README.md#markdown-header-install-dependencies).
+[Read the docs](https://bitbucket.org/atlassian/atlassian-connect-express/src/master/README.md#markdown-header-install-dependencies).
