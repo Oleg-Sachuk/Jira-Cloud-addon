@@ -53,7 +53,7 @@
     ## Webhooks
 
     At the moment, Atlassian Connect supports two types of components of which webhooks is one of them.
-    The "remote_plugin_enabled" webhook is a special webhook that `feebs` will automatically
+    The "remote_plugin_enabled" webhook is a special webhook that `atlassian-connect-express` will automatically
     handle for you. When your add-on is enabled inside a JIRA or Confluence host, that host will
     send a POST to your add-on with information about that host (i.e., host clientKey, host public key, etc.).
 

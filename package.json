@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "my-addon",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,6 +9,6 @@
     "express": "~3.3.4",
     "express-hbs": "*",
     "static-expiry": ">=0.0.5",
-    "feebs": "~0.5.2"
+    "atlassian-connect-express": "~0.6.0"
   }
 }
