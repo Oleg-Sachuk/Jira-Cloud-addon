@@ -7,6 +7,7 @@ var express = require('express');
 // You need to load `atlassian-connect-express` to use her godly powers
 var ac = require('atlassian-connect-express');
 // Static expiry middleware to helpe serve static resources efficiently
+process.env.PWD = process.env.PWD || process.cwd(); // Fix expiry on Windows :(
 var expiry = require('static-expiry');
 // We use [Handlebars](http://handlebarsjs.com/) as our view engine
 // via [express-hbs](https://npmjs.org/package/express-hbs)
