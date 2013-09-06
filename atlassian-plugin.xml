@@ -6,7 +6,7 @@
   visit the [Interactive Descriptor Guide](https://developer.atlassian.com/static/connect).
  -->
 <atlassian-plugin key="{{key}}" name="{{name}}" plugins-version="2"
-  xmlns="https://remoteapps.jira.com/rest/atlassian-connect/1/installer/schema/atlassian-plugin">
+  xmlns="https://ecosystem.atlassian.net/rest/atlassian-connect/1/installer/schema/atlassian-plugin">
 
   <plugin-info>
     <description>{{description}}</description>
