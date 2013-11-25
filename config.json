@@ -86,6 +86,7 @@
     // Make sure that your add-on can only be registered by the hosts on
     // these domains.
     "whitelist": [
+      "*.jira-dev.com",
       "*.atlassian.net",
       "*.jira.com"
     ]
