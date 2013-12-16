@@ -1,0 +1,33 @@
+{
+    "key": "my-add-on",
+    "name": "Ping Pong",
+    "description": "My very first add-on",
+    "vendor": {
+        "name": "Angry Nerds",
+        "url": "https://www.atlassian.com/angrynerds"
+    },
+    "baseUrl": "%%BASE_URI%%",
+    "links": {
+        "self": "%%BASE_URI%%/atlassian-connect.json",
+        "homepage": "%%BASE_URI%%/atlassian-connect.json"
+    },
+    "authentication": {
+        "type": "jwt"
+    },
+    "lifecycle": {
+        // atlassian-connect-express expects this route to be configured to manage the installation handshake
+        "installed": "/installed"
+    },
+    "modules": {
+        "generalPages": [{
+            "location": "system.top.navigation.bar",
+            "name": {
+                "value": "Hello World"
+            },
+            "url": "/hello-world",
+            "conditions": [{
+                "condition": "user_is_logged_in"
+            }]
+        }]
+    }
+}
