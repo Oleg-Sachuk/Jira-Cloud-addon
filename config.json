@@ -1,14 +1,4 @@
 {
-  // This is the add-on's basic information.  These values can be contributed to
-  // atlassian-plugin.xml via template replacement.
-  "key": "my-test-app-key",
-  "name": "My Test App Name",
-  "description": "My test app description.",
-  "version": "1",
-  "vendorName": "My Company",
-  "vendorUrl": "http://example.com",
-  "documentationUrl": "http://example.com",
-
   // This is the default environment. To change your app to use
   // a different env, set NODE_ENV (http://expressjs.com/api.html#app.configure)
   "development": {
