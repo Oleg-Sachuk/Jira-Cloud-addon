@@ -6,10 +6,10 @@
         "name": "Angry Nerds",
         "url": "https://www.atlassian.com/angrynerds"
     },
-    "baseUrl": "%%BASE_URI%%",
+    "baseUrl": "{{localBaseUrl}}",
     "links": {
-        "self": "%%BASE_URI%%/atlassian-connect.json",
-        "homepage": "%%BASE_URI%%/atlassian-connect.json"
+        "self": "{{localBaseUrl}}/atlassian-connect.json",
+        "homepage": "{{localBaseUrl}}/atlassian-connect.json"
     },
     "authentication": {
         "type": "jwt"
