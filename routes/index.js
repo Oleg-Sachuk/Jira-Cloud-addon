@@ -16,7 +16,7 @@ module.exports = function (app, addon) {
         });
     });
 
-    // This is an example route that's used by the default <general-page> modules.
+    // This is an example route that's used by the default "generalPage" module.
     // Verify that the incoming request is authenticated with Atlassian Connect
     app.get('/hello-world', addon.authenticate(), function (req, res) {
             // Rendering a template is easy; the `render()` method takes two params: name of template
