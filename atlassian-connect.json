@@ -19,14 +19,29 @@
         "installed": "/installed"
     },
     "modules": {
-        "generalPages": [{
-            "location": "system.top.navigation.bar",
-            "name": {
-                "value": "Hello World"
+        "generalPages": [
+
+            // JIRA - Add a Hello World menu item to the navigation bar
+            {
+                "location": "system.top.navigation.bar",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/hello-world",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
+                }]
             },
-            "url": "/hello-world",
-            "conditions": [{
-                "condition": "user_is_logged_in"
+
+            // Confluence - Add a Hello World menu item to the navigation bar
+            {
+                "location": "system.header/left",
+                "name": {
+                    "value": "Hello World"
+                },
+                "url": "/hello-world",
+                "conditions": [{
+                    "condition": "user_is_logged_in"
             }]
         }]
     }
