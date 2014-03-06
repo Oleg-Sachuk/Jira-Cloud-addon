@@ -35,6 +35,11 @@
     // To instead configure, say, a PostgreSQL store, the following could be
     // used:
     //
+    //   "store": {
+    //     "adapter": "jugglingdb",
+    //     "type": "postgres",
+    //     "url": "postgres://localhost/my_addon_database"
+    //   },
     "store": {
       "adapter": "jugglingdb",
       "type": "sqlite3",
