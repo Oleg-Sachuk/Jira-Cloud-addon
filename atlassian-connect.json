@@ -23,6 +23,7 @@
 
             // JIRA - Add a Hello World menu item to the navigation bar
             {
+                "key": "hello-world-page-jira",
                 "location": "system.top.navigation.bar",
                 "name": {
                     "value": "Hello World"
@@ -35,6 +36,7 @@
 
             // Confluence - Add a Hello World menu item to the navigation bar
             {
+                "key": "hello-world-page-confluence",
                 "location": "system.header/left",
                 "name": {
                     "value": "Hello World"
