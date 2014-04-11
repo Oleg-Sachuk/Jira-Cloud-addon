@@ -78,6 +78,7 @@
     "whitelist": [
       "*.jira-dev.com",
       "*.atlassian.net",
+      "*.atlassian.com",
       "*.jira.com"
     ]
   }
