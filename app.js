@@ -49,13 +49,6 @@ app.use(express.bodyParser());
 app.use(express.cookieParser());
 // Gzip responses when appropriate
 app.use(express.compress());
-// atlassian-connect-express requires sessions; cookie sessions are useful for easy multi-dyno support on Heroku
-app.use(express.cookieSession({
-  // Arbitrary key for the session cookie
-  key: 'session',
-  // Automatically generated secret based on your private key
-  secret: addon.config.secret()
-}));
 // You need to instantiate the `atlassian-connect-express` middleware in order to get its goodness for free
 app.use(addon.middleware());
 // Enable static resource fingerprinting for far future expires caching in production
