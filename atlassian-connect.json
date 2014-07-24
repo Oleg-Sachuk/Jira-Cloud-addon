@@ -18,6 +18,9 @@
         // atlassian-connect-express expects this route to be configured to manage the installation handshake
         "installed": "/installed"
     },
+    "scopes": [
+        "READ"
+    ],
     "modules": {
         "generalPages": [
 
