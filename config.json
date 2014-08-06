@@ -40,6 +40,11 @@
     //     "type": "postgres",
     //     "url": "postgres://localhost/my_addon_database"
     //   },
+    "store": {
+      "adapter": "jugglingdb",
+      "type": "sqlite3",
+      "database": "store.db"
+    },
 
     // Your add-on will be registered with the following hosts upon startup.
     // In order to take advantage of the automatic registration/deregistration,
