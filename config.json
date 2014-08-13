@@ -6,6 +6,9 @@
     // This is the port your Express server will listen on
     "port": 3000,
 
+    //Use 'unauthorized.hbs' template for displaying an error page
+    "errorTemplate": true,
+
     // alassian-connect-express currently integrates with JugglingDB for persistence
     // to store the host client information (i.e., client key, host public
     // key, etc). When no adapter is specified, it defaults to JugglingDB's
@@ -65,6 +68,10 @@
     // HTTP port to you via the PORT environement variable, so we configure
     // that to be honored here.
     "port": "$PORT",
+
+    //Use 'unauthorized.hbs' template for displaying an error page
+    "errorTemplate": true,
+
     // This is the public URL to your production add-on.
     "localBaseUrl": "https://your-subdomain.herokuapp.com",
     "store": {
