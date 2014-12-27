@@ -6,7 +6,7 @@
 var express = require('express');
 // You need to load `atlassian-connect-express` to use her godly powers
 var ac = require('atlassian-connect-express');
-// Static expiry middleware to helpe serve static resources efficiently
+// Static expiry middleware to help serve static resources efficiently
 process.env.PWD = process.env.PWD || process.cwd(); // Fix expiry on Windows :(
 var expiry = require('static-expiry');
 // We use [Handlebars](http://handlebarsjs.com/) as our view engine
@@ -27,9 +27,9 @@ var routes = require('./routes');
 var app = express();
 // Bootstrap the `atlassian-connect-express` library
 var addon = ac(app);
-// You can set this in `config.js`
+// You can set this in `config.json`
 var port = addon.config.port();
-// Declares the environment to use in `config.js`
+// Declares the environment to use in `config.json`
 var devEnv = app.get('env') == 'development';
 
 // The following settings applies to all environments
