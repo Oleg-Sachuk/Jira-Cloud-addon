@@ -39,6 +39,8 @@ module.exports = function (app, addon) {
         for(var index in files) {
             var file = files[index];
             if (file === "index.js") continue;
+            // skip non-javascript files
+            if (path.extname(file) != "js") continue;
 
             var routes = require("./" + path.basename(file));
 
