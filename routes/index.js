@@ -23,7 +23,7 @@ module.exports = function (app, addon) {
             // and a json object to pass the context in
             res.render('hello-world', {
                 title: 'Atlassian Connect'
-                //issueId: req.query('issueId')
+                //issueId: req.query['issueId']
             });
         }
     );
