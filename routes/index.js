@@ -30,4 +30,23 @@ module.exports = function (app, addon) {
 
     // Add any additional route handlers you need for views or REST resources here...
 
+
+    // load any additional files you have in routes and apply those to the app
+    {
+        var fs = require('fs');
+        var path = require('path');
+        var files = fs.readdirSync("routes");
+        for(var index in files) {
+            var file = files[index];
+            if (file === "index.js") continue;
+            // skip non-javascript files
+            if (path.extname(file) != "js") continue;
+
+            var routes = require("./" + path.basename(file));
+
+            if (typeof routes === "function") {
+                routes(app, addon);
+            }
+        }
+    }
 };
