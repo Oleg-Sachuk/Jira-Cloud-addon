@@ -6,10 +6,15 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "~3.3.4",
-    "express-hbs": "*",
-    "static-expiry": ">=0.0.5",
     "atlassian-connect-express": "~1.0.7",
-    "jugglingdb-sqlite3": "0.0.5"
+    "body-parser": "^1.14.2",
+    "compression": "^1.6.0",
+    "cookie-parser": "^1.4.0",
+    "errorhandler": "^1.4.2",
+    "express": "^4.13.3",
+    "express-hbs": "*",
+    "jugglingdb-sqlite3": "0.0.5",
+    "morgan": "^1.6.1",
+    "static-expiry": ">=0.0.5"
   }
 }
