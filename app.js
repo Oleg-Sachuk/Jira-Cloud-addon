@@ -4,6 +4,11 @@
 // [Express](http://expressjs.com/) is your friend -- it's the underlying
 // web framework that `atlassian-connect-express` uses
 var express = require('express');
+var bodyParser = require('body-parser');
+var compression = require('compression');
+var cookieParser = require('cookie-parser');
+var errorHandler = require('errorhandler');
+var morgan = require('morgan');
 // You need to load `atlassian-connect-express` to use her godly powers
 var ac = require('atlassian-connect-express');
 // Static expiry middleware to help serve static resources efficiently
@@ -41,27 +46,26 @@ app.set('view engine', 'hbs');
 app.set('views', viewsDir);
 
 // Declare any Express [middleware](http://expressjs.com/api.html#middleware) you'd like to use here
-app.use(express.favicon());
 // Log requests, using an appropriate formatter by env
-app.use(express.logger(devEnv ? 'dev' : 'default'));
-// Include stock request parsers
-app.use(express.bodyParser());
-app.use(express.cookieParser());
+app.use(morgan(devEnv ? 'dev' : 'combined'));
+// Include request parsers
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
 // Gzip responses when appropriate
-app.use(express.compress());
+app.use(compression());
+
 // You need to instantiate the `atlassian-connect-express` middleware in order to get its goodness for free
 app.use(addon.middleware());
 // Enable static resource fingerprinting for far future expires caching in production
 app.use(expiry(app, {dir: staticDir, debug: devEnv}));
 // Add an hbs helper to fingerprint static resource urls
 hbs.registerHelper('furl', function(url){ return app.locals.furl(url); });
-// Mount the add-on's routes
-app.use(app.router);
 // Mount the static resource dir
 app.use(express.static(staticDir));
 
 // Show nicer errors when in dev mode
-if (devEnv) app.use(express.errorHandler());
+if (devEnv) app.use(errorHandler());
 
 // Wire up your routes using the express and `atlassian-connect-express` objects
 routes(app, addon);
