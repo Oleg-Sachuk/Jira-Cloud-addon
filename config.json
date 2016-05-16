@@ -47,18 +47,7 @@
       "adapter": "jugglingdb",
       "type": "sqlite3",
       "database": "store.db"
-    },
-
-    // Your add-on will be registered with the following hosts upon startup.
-    // In order to take advantage of the automatic registration/deregistration,
-    // you need to make sure that your express app calls `addon.register()`
-    // (see app.js). Also, you don't need to specify the user/pwd in the URL
-    // as in the examples below. If you don't provide a user/pwd, you will be
-    // prompted the first time you start the server.
-    "hosts": [
-      "http://admin:admin@localhost:1990/confluence",
-      "http://admin:admin@localhost:2990/jira"
-    ]
+    }
   },
 
   // This is the production add-on configuration, which is enabled by setting
