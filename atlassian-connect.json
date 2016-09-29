@@ -15,7 +15,6 @@
         "type": "jwt"
     },
     "lifecycle": {
-        // atlassian-connect-express expects this route to be configured to manage the installation handshake
         "installed": "/installed"
     },
     "scopes": [
@@ -23,8 +22,6 @@
     ],
     "modules": {
         "generalPages": [
-
-            // JIRA - Add a Hello World menu item to the navigation bar
             {
                 "key": "hello-world-page-jira",
                 "location": "system.top.navigation.bar",
@@ -36,8 +33,6 @@
                     "condition": "user_is_logged_in"
                 }]
             },
-
-            // Confluence - Add a Hello World menu item to the navigation bar
             {
                 "key": "hello-world-page-confluence",
                 "location": "system.header/left",
