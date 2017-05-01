@@ -42,7 +42,8 @@
                 "url": "/hello-world",
                 "conditions": [{
                     "condition": "user_is_logged_in"
-            }]
-        }]
+                }]
+            }
+        ]
     }
 }
