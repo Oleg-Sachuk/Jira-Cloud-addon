@@ -15,7 +15,7 @@
     // Sequelize's fallback memory storage.
     //
     // To specify a backend for Sequelize  other than "memory", set the
-    // "dialect" value to one of Sequelize's other supported diaclets.
+    // "dialect" value to one of Sequelize's other supported dialects.
     //
     // To use your own storage adapter, add the key
     // "adapter" to the following configuration, and replace "dialect"
@@ -45,13 +45,13 @@
     //   },
     //
     // You will also need an appropriate Sequelize driver if you choose something
-    // other than the default "diaclet".  In the PostgreSQL case you'd need to
+    // other than the default "dialect".  In the PostgreSQL case you'd need to
     // run the following command to add the proper support:
     //
     //   $ npm install --save pg
     "store": {
       "adapter": "sequelize",
-      "diaclet": "sqlite3",
+      "dialect": "sqlite3",
       "database": "store.db"
     }
   },
