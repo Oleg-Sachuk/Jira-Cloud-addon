@@ -52,7 +52,6 @@
     "store": {
       "adapter": "sequelize",
       "dialect": "sqlite3",
-      "database": "store.db",
       "type": "memory"
     }
   },
