@@ -9,7 +9,7 @@
     //Use 'unauthorized.hbs' template for displaying an error page
     "errorTemplate": true,
 
-    // atlassian-connect-express currently integrates with Sequelize for 
+    // atlassian-connect-express currently integrates with Sequelize for
     // persistence to store the host client information (i.e., client key,
     // host public key, etc). When no adapter is specified, it defaults to
     // Sequelize's fallback memory storage.
@@ -25,8 +25,8 @@
     //
     //   ac.store.register(adapterName, factoryFn)
     //
-    // See `atlassian-connect-express/lib/store/index.js` and the default 
-    // `sequelize.js` files for code demonstrating how to write a 
+    // See `atlassian-connect-express/lib/store/index.js` and the default
+    // `sequelize.js` files for code demonstrating how to write a
     // conformant adapter.  The default values are as follows:
     //
     //   "store": {
@@ -52,7 +52,7 @@
     "store": {
       "adapter": "sequelize",
       "dialect": "sqlite3",
-      "database": "store.db"
+      "type": "memory"
     }
   },
 
