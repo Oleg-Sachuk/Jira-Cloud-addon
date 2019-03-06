@@ -9,14 +9,14 @@ var compression = require('compression');
 var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
 var morgan = require('morgan');
+
 // You need to load `atlassian-connect-express` to use her godly powers
 var ac = require('atlassian-connect-express');
-// Static expiry middleware to help serve static resources efficiently
-process.env.PWD = process.env.PWD || process.cwd(); // Fix expiry on Windows :(
-var expiry = require('static-expiry');
+
 // We use [Handlebars](http://handlebarsjs.com/) as our view engine
 // via [express-hbs](https://npmjs.org/package/express-hbs)
 var hbs = require('express-hbs');
+
 // We also need a few stock Node modules
 var http = require('http');
 var path = require('path');
@@ -48,19 +48,18 @@ app.set('views', viewsDir);
 // Declare any Express [middleware](http://expressjs.com/api.html#middleware) you'd like to use here
 // Log requests, using an appropriate formatter by env
 app.use(morgan(devEnv ? 'dev' : 'combined'));
+
 // Include request parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+
 // Gzip responses when appropriate
 app.use(compression());
 
 // You need to instantiate the `atlassian-connect-express` middleware in order to get its goodness for free
 app.use(addon.middleware());
-// Enable static resource fingerprinting for far future expires caching in production
-app.use(expiry(app, {dir: staticDir, debug: devEnv}));
-// Add an hbs helper to fingerprint static resource urls
-hbs.registerHelper('furl', function(url){ return app.locals.furl(url); });
+
 // Mount the static resource dir
 app.use(express.static(staticDir));
 
