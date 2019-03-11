@@ -41,7 +41,7 @@ var devEnv = app.get('env') == 'development';
 app.set('port', port);
 
 // Configure the Handlebars view engine
-app.engine('hbs', hbs.express3({partialsDir: viewsDir}));
+app.engine('hbs', hbs.express4({partialsDir: viewsDir}));
 app.set('view engine', 'hbs');
 app.set('views', viewsDir);
 
