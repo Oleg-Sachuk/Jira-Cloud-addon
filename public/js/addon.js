@@ -1,1 +1,1 @@
-/* add-on script */
+/* App frontend script */

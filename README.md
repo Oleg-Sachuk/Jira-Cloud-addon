@@ -1,7 +1,8 @@
-# Atlassian Add-on using Express
+# Atlassian Connect App using Express
 
-Congratulations! You've successfully created an Atlassian Connect Add-on using the Express web application framework.
+Congratulations!
+You've successfully created an Atlassian Connect App using the Express web application framework.
 
 ## What's next?
 
-[Read the docs](https://bitbucket.org/atlassian/atlassian-connect-express/src/master/README.md#markdown-header-install-dependencies).
+[Read the docs](https://bitbucket.org/atlassian/atlassian-connect-express/src/master/README.md).

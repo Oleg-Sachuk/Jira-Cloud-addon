@@ -1,5 +1,5 @@
-// This is the entry point for your add-on, creating and configuring
-// your add-on HTTP server
+// This is the entry point for your app, creating and configuring
+// your app HTTP server
 
 // [Express](http://expressjs.com/) is your friend -- it's the underlying
 // web framework that `atlassian-connect-express` uses
@@ -11,7 +11,7 @@ var errorHandler = require('errorhandler');
 var morgan = require('morgan');
 
 // You need to load `atlassian-connect-express` to use her godly powers
-var ac = require('atlassian-connect-express');
+var ace = require('atlassian-connect-express');
 
 // We use [Handlebars](http://handlebarsjs.com/) as our view engine
 // via [express-hbs](https://npmjs.org/package/express-hbs)
@@ -31,7 +31,7 @@ var routes = require('./routes');
 // Bootstrap Express
 var app = express();
 // Bootstrap the `atlassian-connect-express` library
-var addon = ac(app);
+var addon = ace(app);
 // You can set this in `config.json`
 var port = addon.config.port();
 // Declares the environment to use in `config.json`
@@ -71,7 +71,7 @@ routes(app, addon);
 
 // Boot the damn thing
 http.createServer(app).listen(port, function(){
-  console.log('Add-on server running at http://' + os.hostname() + ':' + port);
-  // Enables auto registration/de-registration of add-ons into a host in dev mode
+  console.log('App server running at http://' + os.hostname() + ':' + port);
+  // Enables auto registration/de-registration of app into a host in dev mode
   if (devEnv) addon.register();
 });

@@ -1,33 +1,32 @@
+// It's OK to write comments in this JSON configuration file,
+// comments will be stripped when this file is loaded.
 {
-  // This is the default environment. To change your app to use
-  // a different env, set NODE_ENV (http://expressjs.com/api.html#app.configure)
+  // "development" is the default environment.
+  // To change, set NODE_ENV (http://expressjs.com/api.html#app.configure).
   "development": {
-
-    // This is the port your Express server will listen on
+    // Port the Express server will listen on.
     "port": 3000,
 
-    //Use 'unauthorized.hbs' template for displaying an error page
+    // Use views/unauthorized.hbs for error page.
     "errorTemplate": true,
 
     // atlassian-connect-express currently integrates with Sequelize for
-    // persistence to store the host client information (i.e., client key,
-    // host public key, etc). When no adapter is specified, it defaults to
-    // Sequelize's fallback memory storage.
+    // persistence to store the host client information (i.e. client key,
+    // host public key etc.). When no adapter is specified, it defaults to
+    // memory.
     //
-    // To specify a backend for Sequelize  other than "memory", set the
-    // "dialect" value to one of Sequelize's other supported dialects.
+    // To specify a storage other than memory, set
+    // "dialect" to one of Sequelize's other supported dialects:
+    // http://docs.sequelizejs.com/manual/installation/usage.html#dialects
     //
-    // To use your own storage adapter, add the key
-    // "adapter" to the following configuration, and replace "dialect"
-    // and "connection" with any values your adapter expects.  Then make sure
-    // that you register your adapter factory with the following code in
-    // app.js:
+    // To use a custom storage adapter, configure it in "store".
+    // Make sure to register the adapter factory in app.js:
     //
-    //   ac.store.register(adapterName, factoryFn)
+    //   ace.store.register(adapterName, factoryFunction)
     //
-    // See `atlassian-connect-express/lib/store/index.js` and the default
-    // `sequelize.js` files for code demonstrating how to write a
-    // conformant adapter.  The default values are as follows:
+    // At https://bitbucket.org/atlassian/atlassian-connect-express/src/master/lib/store/,
+    // see index.js and sequelize.js for code demonstrating how to write
+    // a conformant adapter. The default values are as follows:
     //
     //   "store": {
     //     "adapter": "sequelize",
@@ -35,20 +34,18 @@
     //     "storage": ":memory:"
     //   },
     //
-    // To instead configure, say, a PostgreSQL store, the following could be
-    // used:
+    // To configure PostgreSQL, the following can be used:
     //
     //   "store": {
     //     "adapter": "sequelize",
     //     "dialect": "postgres",
-    //     "url": "postgres://localhost/my_addon_database"
+    //     "url": "postgres://localhost/my_app_database"
     //   },
     //
-    // You will also need an appropriate Sequelize driver if you choose something
-    // other than the default "dialect".  In the PostgreSQL case you'd need to
-    // run the following command to add the proper support:
+    // An appropriate DB driver for Sequelize is required for storage other than memory.
+    // For PostgreSQL, run the following command:
     //
-    //   $ npm install --save pg
+    //   npm install --save pg
     "store": {
       "adapter": "sequelize",
       "dialect": "sqlite3",
@@ -56,32 +53,27 @@
     }
   },
 
-  // This is the production add-on configuration, which is enabled by setting
+  // Configuration for production, which is enabled by setting
   // the NODE_ENV=production environment variable.
   "production": {
-    // On a PaaS host like Heroku, the runtime environment will provide the
-    // HTTP port to you via the PORT environement variable, so we configure
-    // that to be honored here.
+    // PaaS like Heroku will provide HTTP port via environement variable.
     "port": "$PORT",
 
-    //Use 'unauthorized.hbs' template for displaying an error page
+    // Use views/unauthorized.hbs for error page.
     "errorTemplate": true,
 
-    // This is the public URL to your production add-on.
-    "localBaseUrl": "https://your-subdomain.herokuapp.com",
+    // Public URL to production app.
+    "localBaseUrl": "https://my-subdomain.herokuapp.com",
     "store": {
-      // You won't want to use the memory store in production, or your install
-      // registrations will be forgotten any time your app restarts.  Here
-      // we tell atlassian-connect-express to use the PostgreSQL backend for the default
-      // sequelize adapter.
+      // Don't use memory storage for production, otherwise
+      // data in the storage will go away when the app server restarts.
+      // Here, we use PostgreSQL:
       "type": "postgres",
-      // Again, a PaaS host like Heroku will probably provide the db connection
-      // URL to you through the environment, so we tell atlassian-connect-express to use that value.
+      // PaaS like Heroku will provide DB connection URL through environment variable.
       "url": "$DATABASE_URL"
     },
 
-    // Make sure that your add-on can only be registered by the hosts on
-    // these domains.
+    // The app can only be registered by the products on these domains:
     "whitelist": [
       "*.jira-dev.com",
       "*.atlassian.net",
