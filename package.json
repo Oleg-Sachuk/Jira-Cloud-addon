@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node -r esm app.js"
   },
   "dependencies": {
     "atlassian-connect-express": "^3.4.0",
@@ -15,5 +15,8 @@
     "express-hbs": "^2.0.2",
     "morgan": "^1.9.1",
     "sequelize": "^4.43.0"
+  },
+  "devDependencies": {
+    "esm": "^3.2.16"
   }
 }

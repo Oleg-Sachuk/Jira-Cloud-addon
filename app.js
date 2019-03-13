@@ -1,52 +1,48 @@
-// This is the entry point for your app, creating and configuring
-// your app HTTP server
+// Entry point for the app
 
-// [Express](http://expressjs.com/) is your friend -- it's the underlying
-// web framework that `atlassian-connect-express` uses
-var express = require('express');
-var bodyParser = require('body-parser');
-var compression = require('compression');
-var cookieParser = require('cookie-parser');
-var errorHandler = require('errorhandler');
-var morgan = require('morgan');
+// Express is the underlying that atlassian-connect-express uses:
+// https://expressjs.com
+import express from 'express';
 
-// You need to load `atlassian-connect-express` to use her godly powers
-var ace = require('atlassian-connect-express');
+// https://expressjs.com/en/guide/using-middleware.html
+import bodyParser from 'body-parser';
+import compression from 'compression';
+import cookieParser from 'cookie-parser';
+import errorHandler from 'errorhandler';
+import morgan from 'morgan';
 
-// We use [Handlebars](http://handlebarsjs.com/) as our view engine
-// via [express-hbs](https://npmjs.org/package/express-hbs)
-var hbs = require('express-hbs');
+// atlassian-connect-express also provides a middleware
+import ace from 'atlassian-connect-express';
+
+// Use Handlebars as view engine:
+// https://npmjs.org/package/express-hbs
+// http://handlebarsjs.com
+import hbs from 'express-hbs';
 
 // We also need a few stock Node modules
-var http = require('http');
-var path = require('path');
-var os = require('os');
+import http from 'http';
+import path from 'path';
+import os from 'os';
 
-// Anything in ./public is served up as static content
-var staticDir = path.join(__dirname, 'public');
-// Anything in ./views are HBS templates
-var viewsDir = __dirname + '/views';
-// Your routes live here; this is the C in MVC
-var routes = require('./routes');
-// Bootstrap Express
-var app = express();
-// Bootstrap the `atlassian-connect-express` library
-var addon = ace(app);
-// You can set this in `config.json`
-var port = addon.config.port();
-// Declares the environment to use in `config.json`
-var devEnv = app.get('env') == 'development';
+// Routes live here; this is the C in MVC
+import routes from './routes';
 
-// The following settings applies to all environments
+// Bootstrap Express and atlassian-connect-express
+const app = express();
+const addon = ace(app);
+
+// See config.json
+const port = addon.config.port();
 app.set('port', port);
 
-// Configure the Handlebars view engine
+// Configure Handlebars
+const viewsDir = __dirname + '/views';
 app.engine('hbs', hbs.express4({partialsDir: viewsDir}));
 app.set('view engine', 'hbs');
 app.set('views', viewsDir);
 
-// Declare any Express [middleware](http://expressjs.com/api.html#middleware) you'd like to use here
 // Log requests, using an appropriate formatter by env
+const devEnv = app.get('env') == 'development';
 app.use(morgan(devEnv ? 'dev' : 'combined'));
 
 // Include request parsers
@@ -57,21 +53,23 @@ app.use(cookieParser());
 // Gzip responses when appropriate
 app.use(compression());
 
-// You need to instantiate the `atlassian-connect-express` middleware in order to get its goodness for free
+// Include atlassian-connect-express middleware
 app.use(addon.middleware());
 
-// Mount the static resource dir
+// Mount the static files directory
+const staticDir = path.join(__dirname, 'public');
 app.use(express.static(staticDir));
 
-// Show nicer errors when in dev mode
+// Show nicer errors in dev mode
 if (devEnv) app.use(errorHandler());
 
-// Wire up your routes using the express and `atlassian-connect-express` objects
+// Wire up routes
 routes(app, addon);
 
-// Boot the damn thing
-http.createServer(app).listen(port, function(){
+// Boot the HTTP server
+http.createServer(app).listen(port, () => {
   console.log('App server running at http://' + os.hostname() + ':' + port);
+
   // Enables auto registration/de-registration of app into a host in dev mode
   if (devEnv) addon.register();
 });
