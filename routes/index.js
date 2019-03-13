@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-
 export default function routes(app, addon) {
     // Redirect root path to /atlassian-connect.json,
     // which will be served by atlassian-connect-express.
@@ -20,17 +17,4 @@ export default function routes(app, addon) {
     });
 
     // Add additional route handlers here...
-
-    // Load additional files in routes directory.
-    {
-        const files = fs.readdirSync('routes');
-        files.forEach(file => {
-            if (file !== 'index.js' && path.extname(file) === '.js') {
-                const routes = require('./' + path.basename(file));
-                if (typeof routes === 'function') {
-                    routes(app, addon);
-                }
-            }
-        });
-    }
 }
