@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node -r esm app.js"
+    "start": "node -r esm app.js",
+    "lint": "eslint app.js routes"
   },
   "dependencies": {
     "atlassian-connect-express": "^3.4.0",
@@ -17,6 +18,7 @@
     "sequelize": "^4.43.0"
   },
   "devDependencies": {
+    "eslint": "^5.15.1",
     "esm": "^3.2.16"
   }
 }
