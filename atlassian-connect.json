@@ -2,15 +2,7 @@
     "key": "my-app",
     "name": "My app",
     "description": "My very first app",
-    "vendor": {
-        "name": "Angry Nerds",
-        "url": "https://www.atlassian.com/angrynerds"
-    },
     "baseUrl": "{{localBaseUrl}}",
-    "links": {
-        "self": "{{localBaseUrl}}/atlassian-connect.json",
-        "homepage": "{{localBaseUrl}}/atlassian-connect.json"
-    },
     "authentication": {
         "type": "jwt"
     },
@@ -45,8 +37,5 @@
                 }]
             }
         ]
-    },
-    "apiMigrations": {
-        "gdpr": true
     }
 }
