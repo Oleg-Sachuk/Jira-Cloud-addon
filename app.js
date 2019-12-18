@@ -23,6 +23,7 @@ import hbs from 'express-hbs';
 import http from 'http';
 import path from 'path';
 import os from 'os';
+import helmet from 'helmet';
 
 // Routes live here; this is the C in MVC
 import routes from './routes';
@@ -45,6 +46,16 @@ app.set('views', viewsDir);
 const devEnv = app.get('env') == 'development';
 app.use(morgan(devEnv ? 'dev' : 'combined'));
 
+// Atlassian security policy requirements
+// http://go.atlassian.com/security-requirements-for-cloud-apps
+app.use(helmet.hsts({
+  maxAge: 31536000,
+  includeSubDomains: false
+}));
+app.use(helmet.referrerPolicy({
+  policy: ['origin-when-cross-origin']
+}));
+
 // Include request parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -59,6 +70,10 @@ app.use(addon.middleware());
 // Mount the static files directory
 const staticDir = path.join(__dirname, 'public');
 app.use(express.static(staticDir));
+
+// Atlassian security policy requirements
+// http://go.atlassian.com/security-requirements-for-cloud-apps
+app.use(helmet.noCache());
 
 // Show nicer errors in dev mode
 if (devEnv) app.use(errorHandler());
