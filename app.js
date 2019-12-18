@@ -48,6 +48,7 @@ app.use(morgan(devEnv ? 'dev' : 'combined'));
 
 // Atlassian security policy requirements
 // http://go.atlassian.com/security-requirements-for-cloud-apps
+// HSTS must be enabled with a minimum age of at least one year
 app.use(helmet.hsts({
   maxAge: 31536000,
   includeSubDomains: false
