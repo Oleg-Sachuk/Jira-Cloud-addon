@@ -49,6 +49,7 @@
     "store": {
       "adapter": "sequelize",
       "dialect": "sqlite3",
+      "logging": false,
       "type": "memory"
     }
   },
