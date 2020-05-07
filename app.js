@@ -24,6 +24,7 @@ import http from 'http';
 import path from 'path';
 import os from 'os';
 import helmet from 'helmet';
+import nocache from 'nocache';
 
 // Routes live here; this is the C in MVC
 import routes from './routes';
@@ -74,7 +75,7 @@ app.use(express.static(staticDir));
 
 // Atlassian security policy requirements
 // http://go.atlassian.com/security-requirements-for-cloud-apps
-app.use(helmet.noCache());
+app.use(nocache());
 
 // Show nicer errors in dev mode
 if (devEnv) app.use(errorHandler());
