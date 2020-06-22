@@ -43,12 +43,6 @@ app.engine('hbs', hbs.express4({partialsDir: viewsDir}));
 app.set('view engine', 'hbs');
 app.set('views', viewsDir);
 
-// Set no-referrer header on all requests
-app.use(function(req, res, next) {
-    res.setHeader("Referrer-Policy", "origin");
-    return next();
-});
-
 // Log requests, using an appropriate formatter by env
 const devEnv = app.get('env') == 'development';
 app.use(morgan(devEnv ? 'dev' : 'combined'));
@@ -61,7 +55,7 @@ app.use(helmet.hsts({
   includeSubDomains: false
 }));
 app.use(helmet.referrerPolicy({
-  policy: ['origin-when-cross-origin']
+  policy: ['origin']
 }));
 
 // Include request parsers
