@@ -3,7 +3,10 @@
         "node": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -14,6 +17,12 @@
     },
     "rules": {
         "no-console": "off",
-        "no-unused-vars": ["error", {"argsIgnorePattern": "^_", "varsIgnorePattern": "^_"}]
+        "no-unused-vars": ["error", {"argsIgnorePattern": "^_", "varsIgnorePattern": "^_"}],
+        "react/prop-types": "off"
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
     }
 }
