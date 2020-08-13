@@ -43,7 +43,7 @@ const devEnv = app.get('env') === 'development';
 app.use(morgan(devEnv ? 'dev' : 'combined'));
 
 // Configure Handlebars
-const viewsDir = path.join(__dirname, '/views');
+const viewsDir = path.join(__dirname, 'views');
 const handlebarsEngine = hbs.express4({partialsDir: viewsDir});
 app.engine('hbs', handlebarsEngine);
 app.set('view engine', 'hbs');

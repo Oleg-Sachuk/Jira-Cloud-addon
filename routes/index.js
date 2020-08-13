@@ -9,7 +9,7 @@ export default function routes(app, addon) {
     // Verify that the incoming request is authenticated with Atlassian Connect.
     app.get('/hello-world', addon.authenticate(), (req, res) => {
         // Rendering a template is easy; the render method takes two params: the name of the component or template file, and its props.
-        // Handlebars and jsx are both supported, but please note that jsx changes require `npm run watch` to be picked up without a restart.
+        // Handlebars and jsx are both supported, but please note that jsx changes require `npm run watch-jsx` in order to be picked up.
         res.render(
           'hello-world.jsx', // change this to 'hello-world.hbs' or just 'hello-world' to use the handlebars version
           {

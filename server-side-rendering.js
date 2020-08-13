@@ -38,6 +38,8 @@ export function addServerSideRendering(app, handlebarsEngine) {
         // It requires some special handling when rendering on the server.
         sheet = new ServerStyleSheet();
         // Dynamically require the component file that was requested. Assume the root component is the default export.
+        // Ensure we pick up the latest version if we're running in dev mode.
+        if (devEnv) delete require.cache[nodeViewPath];
         const rootElement = React.createElement(require(nodeViewPath).default, props);
         ssrOptions.body = renderToString(sheet.collectStyles(rootElement));
         ssrOptions.styleTags = sheet.getStyleTags();
