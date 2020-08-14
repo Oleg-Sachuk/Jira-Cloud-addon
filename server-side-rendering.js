@@ -47,8 +47,6 @@ export function addServerSideRendering(app, handlebarsEngine) {
       const viewOptions = {
         ...options,
         ...ssrOptions,
-        // A common layout template is shared between handlebars and react templates
-        react: true,
         // React is configured as an "external" so we can share a cached, CDN-delivered version between pages.
         reactSource: `//unpkg.com/react@16/umd/react.${devEnv ? 'development' : 'production.min'}.js`,
         reactDomSource: `//unpkg.com/react-dom@16/umd/react-dom.${devEnv ? 'development' : 'production.min'}.js`,
@@ -56,13 +54,16 @@ export function addServerSideRendering(app, handlebarsEngine) {
         // Supply props for rendering / hydration
         props: JSON.stringify(props)
       };
-      const layoutTemplate = path.join(viewsDir, 'layout.hbs');
+      const layoutTemplate = path.join(viewsDir, 'react-layout.hbs');
       return handlebarsEngine(
         layoutTemplate,
         viewOptions,
         callback
       );
     } catch (e) {
+      if (e && e.code === 'MODULE_NOT_FOUND') {
+        return callback(new Error(`Could not load the component ${path.basename(viewFile)}. Did you run \`npm build\` to compile your jsx files?`));
+      }
       return callback(e);
     } finally {
       sheet && sheet.seal();
