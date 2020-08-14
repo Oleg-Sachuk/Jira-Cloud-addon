@@ -28,6 +28,7 @@ import nocache from 'nocache';
 
 // Routes live here; this is the C in MVC
 import routes from './routes';
+import { addServerSideRendering } from './server-side-rendering';
 
 // Bootstrap Express and atlassian-connect-express
 const app = express();
@@ -37,15 +38,19 @@ const addon = ace(app);
 const port = addon.config.port();
 app.set('port', port);
 
+// Log requests, using an appropriate formatter by env
+const devEnv = app.get('env') === 'development';
+app.use(morgan(devEnv ? 'dev' : 'combined'));
+
 // Configure Handlebars
-const viewsDir = __dirname + '/views';
-app.engine('hbs', hbs.express4({partialsDir: viewsDir}));
+const viewsDir = path.join(__dirname, 'views');
+const handlebarsEngine = hbs.express4({partialsDir: viewsDir});
+app.engine('hbs', handlebarsEngine);
 app.set('view engine', 'hbs');
 app.set('views', viewsDir);
 
-// Log requests, using an appropriate formatter by env
-const devEnv = app.get('env') == 'development';
-app.use(morgan(devEnv ? 'dev' : 'combined'));
+// Configure jsx (jsx files should go in views/ and export the root component as the default export)
+addServerSideRendering(app, handlebarsEngine);
 
 // Atlassian security policy requirements
 // http://go.atlassian.com/security-requirements-for-cloud-apps
