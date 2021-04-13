@@ -4,6 +4,13 @@ export default function routes(app) {
   const mysql = require('mysql2/promise');
   const moment = require('moment');
 
+  const myreqHead = {
+    'Authorization': `Basic ${Buffer.from(
+      'sachuk.o.a@gmail.com:X8BvJRasXAzVtvDOA3b92690'
+    ).toString('base64')}`,
+    'Accept': 'application/json'
+  }
+
   // Redirect root path to /atlassian-connect.json,
   // which will be served by atlassian-connect-express.
   app.get('/', (req, res) => {
@@ -14,17 +21,12 @@ export default function routes(app) {
     let data;
     fetch('https://oleg-test.atlassian.net/rest/api/3/search', {
       method: 'GET',
-      headers: {
-        'Authorization': `Basic ${Buffer.from(
-          'sachuk.o.a@gmail.com:X8BvJRasXAzVtvDOA3b92690'
-        ).toString('base64')}`,
-        'Accept': 'application/json'
-      }
+      headers: myreqHead
     })
       .then(response => {
         try {
-          mysql.createConnection(config).then( connection => connection.execute(`INSERT INTO \`log\` (\`curr_time\`,\`did\`,\`success\`) VALUES ('${moment().format('lll')}', 
-          'Page loaded (issue data inserted)', '${response.status} - ${response.statusText}');`))
+          mysql.createConnection(config).then( connection => connection.execute(`INSERT INTO \`log\` (\`curr_time\`,\`did\`,\`success\`) 
+          VALUES ('${moment().format('lll')}', 'Page loaded (issue data inserted)', '${response.status} - ${response.statusText}');`))
         } catch (error) {
           console.log(error);
         }
@@ -47,17 +49,12 @@ export default function routes(app) {
     let data;
     fetch(`https://oleg-test.atlassian.net/rest/api/3/filter${req.body.filter}`, {
       method: 'GET',
-      headers: {
-        'Authorization': `Basic ${Buffer.from(
-          'sachuk.o.a@gmail.com:X8BvJRasXAzVtvDOA3b92690'
-        ).toString('base64')}`,
-        'Accept': 'application/json'
-      }
+      headers: myreqHead
     })
       .then(response => {
         try {
-          mysql.createConnection(config).then( connection => connection.execute(`INSERT INTO \`log\` (\`curr_time\`,\`did\`,\`success\`) VALUES ('${moment().format('lll')}', 
-          'filter chosen (${req.body.filter})', '${response.status} - ${response.statusText}');`))
+          mysql.createConnection(config).then( connection => connection.execute(`INSERT INTO \`log\` (\`curr_time\`,\`did\`,\`success\`) 
+          VALUES ('${moment().format('lll')}', 'Filter chosen (${req.body.filter})', '${response.status} - ${response.statusText}');`))
         } catch (error) {
           console.log(error);
         }
@@ -68,7 +65,7 @@ export default function routes(app) {
       })
       .then(text => {
         data = text;
-        console.log("Fetched data: ", data);
+        // console.log("Fetched data: ", data);
         res.status(200).json(data)
       })
       .catch(err => console.error(err));
@@ -79,14 +76,11 @@ export default function routes(app) {
     let data;
     fetch(`${req.body.url}`, {
       method: 'GET',
-      headers: {
-        'Authorization': `Basic ${Buffer.from(
-          'sachuk.o.a@gmail.com:X8BvJRasXAzVtvDOA3b92690'
-        ).toString('base64')}`,
-        'Accept': 'application/json'
-      }
+      headers: myreqHead
     })
       .then(response => {
+        mysql.createConnection(config).then( connection => connection.execute(`INSERT INTO \`log\` (\`curr_time\`,\`did\`,\`success\`) 
+        VALUES ('${moment().format('lll')}', 'Filtered data loaded', '${response.status} - ${response.statusText}');`))
         console.log(
           `Response: ${response.status} ${response.statusText}`
         );
@@ -94,7 +88,7 @@ export default function routes(app) {
       })
       .then(text => {
         data = text;
-        console.log("Fetched data: ", data);
+        // console.log("Fetched data: ", data);
         res.status(200).json(data)
       })
       .catch(err => console.error(err));

@@ -12,7 +12,7 @@ export const useHttp = () => {
                 body = JSON.stringify(body);
                 headers['Content-Type'] = 'application/json'
             }
-            debugger
+            
             const response = await fetch(url, { method, body, headers })
             const data = response.json();
             await data.then(res => { return setError(res.message) });
