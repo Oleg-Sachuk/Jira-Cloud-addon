@@ -7,6 +7,9 @@
       "eslint:recommended",
       "plugin:react/recommended"
     ],
+    "plugins": [
+      "@babel/plugin-transform-runtime"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"

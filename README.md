@@ -1,8 +1,7 @@
 # Atlassian Connect App using Express
 
-Congratulations!
-You've successfully created an Atlassian Connect App using the Express web application framework.
+3rd party add-on for Jira Cloud created with an Atlassian Connect App using the Express web application framework.
 
-## What's next?
+## Oleg Sachuk, Kyiv 2021
 
-[Read the docs](https://bitbucket.org/atlassian/atlassian-connect-express/src/master/README.md).
+## Checkout more projects on my GitHub
