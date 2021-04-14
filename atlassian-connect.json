@@ -2,7 +2,7 @@
     "key": "my-app",
     "name": "My app",
     "description": "My very first app",
-    "baseUrl": "https://6e6101994fa6.ngrok.io",
+    "baseUrl": "http://18.196.141.34:3000",
     "authentication": {
         "type": "jwt"
     },

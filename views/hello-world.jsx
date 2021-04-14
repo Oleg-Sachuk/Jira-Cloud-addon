@@ -36,6 +36,20 @@ function HelloWorld() {
     if (!issues.errorMessages) setTabs(issues);
   }
 
+  const handleSubmit = (event) => {
+    switch (event.target.value) {
+      case 'default':
+        getUserInfo()
+        break;
+      case '/10000':
+        onFilterChange(event.target.value)
+        break;
+      default:
+        onNameChange(event.target.value)
+        break;
+    }
+  }
+
   useEffect(() => {
     getUserInfo()
   }, [getUserInfo])
@@ -43,36 +57,18 @@ function HelloWorld() {
   return (<>
     <div className='intro-header'><h1>Everything started fine!</h1></div>
     {tabs && <h2>Made by Oleg Sachuk</h2>}
-    <Form
-      onSubmit={formData => {
-        switch (formData.type) {
-          case 'default':
-            getUserInfo()
-            break;
-          case '/10000':
-            onFilterChange(formData.type)
-            break;
-          default:
-            onNameChange(formData.type)
-            break;
-        }
-      }}
-    >
-      {({ handleSubmit }) => (
         <form onSubmit={handleSubmit} onChange={handleSubmit}>
           <div scope='row'>
-            <Field name={'type'} component={'select'} >
+            <select name={'type'}>
               <option placeholder='default' >{'default'}</option>
               <option placeholder='by id' >{'/10000'}</option>
               {tabs && tabs.issues.map(element => {
                 if (element.fields.assignee) return <option placeholder='by name' >{`${element.fields.assignee.displayName}`}</option>
               })}
-            </Field>
+            </select>
             <label htmlFor="type">choose filter</label>
           </div >
         </form>
-      )}
-    </Form>
     <table className="table">
       <thead>
         <tr>
